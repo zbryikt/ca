@@ -1,24 +1,30 @@
 {
-  "name": "ca",
-  "version": "1.0.0",
+  "name": "@zbryikt/cmd-gpt",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "./bin/cli.js",
+  "files": [
+    "bin/**/*"
+  ],
+  "bin": {
+    "ca": "./bin/cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zbryikt/ca.git"
+    "url": "git+https://github.com/zbryikt/cmd-gpt.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "zbryikt",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zbryikt/ca/issues"
+    "url": "https://github.com/zbryikt/cmd-gpt/issues"
   },
-  "homepage": "https://github.com/zbryikt/ca#readme",
+  "homepage": "https://github.com/zbryikt/cmd-gpt#readme",
   "dependencies": {
     "@plotdb/colors": "^0.0.3",
     "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "livescript": "^1.6.0"
   }
 }

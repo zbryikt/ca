@@ -13,7 +13,7 @@ catch e
 query = (msg) ->
   opt =
     key: secret.apiKey
-    max_tokens: 100
+    max_tokens: 300
     messages: [
       {role: 'system', content: """
       用戶現在正透過終端機指令介面與您對話，請避免輸出不適合的排版文字，但可用跳脫碼上色。
@@ -45,23 +45,27 @@ rl = readline.createInterface do
 rl.on \line, (line = "") ->
   line = line.trim!
   if line == '' =>
+    msg = lc.msg.join(\\n)
+    lc.msg.splice 0
+    if !msg =>
+      console.log "[ERR] No message to send.".red
+      process.stdout.write "[YOU] ".green
+      return
     lc.write = false
     # write an extra space for loader to spin
     process.stdout.write "[GPT]  ".yellow
     loading true
-    msg = lc.msg.join(\\n)
-    lc.msg.splice 0
     query msg .then (ret) ->
       loading false
       console.log (ret).brightWhite
       lc.write = true
-      process.stdout.write "[You] ".green
+      process.stdout.write "[YOU] ".green
   if !lc.write => return
   lc.msg.push line
-  process.stdout.write "[You] ".green
+  process.stdout.write "[YOU] ".green
 
 rl.input.on 'keypress', (char, key) -> return
 rl._writeToOutput = (stw) -> if lc.write => rl.output.write(stw)
 
 console.log "[Cmdline GPT] 'qq' or Ctrl-C to quit, empty line to send.".cyan
-process.stdout.write "[You] ".green
+process.stdout.write "[YOU] ".green

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rm -rf bin
+./node_modules/.bin/lsc -o bin -bc src
+echo "#!/usr/bin/env node" > bin/cli.js
+cat bin/index.js >> bin/cli.js
+chmod 755 bin/cli.js
